@@ -10,9 +10,9 @@ import {
     UPDATE_SEARCH_TERM,
   } from './actionTypes';
   
-  export const addTodo = (title, description) => ({
+  export const addTodo = (todo) => ({
     type: ADD_TODO,
-    payload: { title, description },
+    payload: todo,
   });
   
   export const toggleTodo = (id) => ({
