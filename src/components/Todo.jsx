@@ -4,6 +4,7 @@ import TodoList from './TodoList';
 import FilterButtons from './FilterButtons';
 import { BsSearch, BsPlus } from 'react-icons/bs';
 import { addTodo, updateSearchTerm } from '../redux/actions';
+import { motion } from 'framer-motion';
 
 const Todo = () => {
     const todos = useSelector((state) => state.todos);
@@ -31,12 +32,30 @@ const Todo = () => {
     };
 
     return (
-        <div className="max-w-4xl mx-auto sm:mt-8 p-4 bg-gray-100 rounded">
-            <h2 className='mt-3 mb-6 text-2xl font-bold text-center uppercase'>Personal TODO APP</h2>
-            <div className="flex items-center mb-4">
+        <motion.div
+            className="max-w-4xl mx-auto sm:mt-8 p-6 bg-gradient-to-r from-blue-100 to-purple-100 rounded-lg shadow-lg"
+            initial={{ opacity: 0, y: -50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, ease: "easeOut" }}
+        >
+            <motion.h2
+                className="mt-3 mb-6 text-3xl font-bold text-center uppercase text-gray-800"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.5, delay: 0.3 }}
+            >
+                Personal TODO APP
+            </motion.h2>
+            
+            <motion.div
+                className="flex items-center mb-6 space-x-4"
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.5, delay: 0.5, ease: "easeOut" }}
+            >
                 <input
                     id="addTodoTitle"
-                    className="flex-grow p-2 border-b-2 border-gray-300 focus:outline-none focus:border-blue-500"
+                    className="flex-grow p-3 rounded-lg border-2 border-blue-300 focus:outline-none focus:border-purple-500 shadow-sm"
                     type="text"
                     placeholder="Add Todo Title"
                     value={newTodoTitle}
@@ -44,38 +63,49 @@ const Todo = () => {
                 />
                 <input
                     id="addTodoDescription"
-                    className="flex-grow p-2 border-b-2 border-gray-300 focus:outline-none focus:border-blue-500"
+                    className="flex-grow p-3 rounded-lg border-2 border-blue-300 focus:outline-none focus:border-purple-500 shadow-sm"
                     type="text"
                     placeholder="Add Todo Description"
                     value={newTodoDescription}
                     onChange={(e) => setNewTodoDescription(e.target.value)}
                 />
-                <button
-                    className="ml-4 p-2 bg-blue-500 text-white rounded hover:bg-blue-600 focus:outline-none"
+                <motion.button
+                    className="ml-4 p-3 bg-gradient-to-r from-blue-500 to-purple-500 text-white rounded-lg shadow-md hover:shadow-lg focus:outline-none"
                     onClick={handleAddTodoClick}
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.9 }}
                 >
-                    <BsPlus size={20} />
-                </button>
-            </div>
+                    <BsPlus size={24} />
+                </motion.button>
+            </motion.div>
 
-            <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div className="flex flex-col sm:flex-row items-center justify-between gap-4 mb-6">
                 <FilterButtons />
-                <div className="flex items-center mb-4">
+                <motion.div
+                    className="flex items-center"
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.5, delay: 0.7, ease: "easeOut" }}
+                >
                     <input
-                        className="flex-grow p-2 border-b-2 border-gray-300 focus:outline-none focus:border-blue-500"
+                        className="flex-grow p-3 rounded-lg border-2 border-blue-300 focus:outline-none focus:border-purple-500 shadow-sm"
                         type="text"
                         placeholder="Search Todos"
                         value={searchTerm}
                         onChange={(e) => handleSearchChange(e.target.value)}
                     />
-                    <button className="ml-4 p-2 bg-blue-500 text-white rounded hover:bg-blue-600 focus:outline-none">
-                        <BsSearch size={20} />
-                    </button>
-                </div>
+                    <motion.button
+                        className="ml-4 p-3 bg-gradient-to-r from-blue-500 to-purple-500 text-white rounded-lg shadow-md hover:shadow-lg focus:outline-none"
+                        whileHover={{ scale: 1.1 }}
+                        whileTap={{ scale: 0.9 }}
+                    >
+                        <BsSearch size={24} />
+                    </motion.button>
+                </motion.div>
             </div>
 
             <TodoList />
-        </div>
+        </motion.div>
     );
 };
 

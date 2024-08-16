@@ -1,5 +1,6 @@
-import { useSelector } from "react-redux";
-import TodoItem from "./TodoItem";
+import { useSelector } from 'react-redux';
+import TodoItem from './TodoItem';
+import { motion } from 'framer-motion';
 
 const TodoList = () => {
   const filteredTodos = useSelector((state) => {
@@ -18,15 +19,33 @@ const TodoList = () => {
     });
   });
 
-  console.log('Filtered Todos:', filteredTodos);
-
   return (
-    <ul>
-      <li className="my-2 text-sm italic">All Your Notes Here...</li>
+    <motion.ul
+      className="p-4 bg-gray-50 rounded-lg shadow-lg"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.5 }}
+    >
+      <motion.li
+        className="my-2 text-sm italic text-gray-600"
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.3, delay: 0.1 }}
+      >
+        All Your Notes Here...
+      </motion.li>
       {filteredTodos.map((todo, index) => (
-        <TodoItem key={index} todo={todo} index={index} />
+        <motion.li
+          key={index}
+          className="my-2"
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.3, delay: 0.1 * index }}
+        >
+          <TodoItem todo={todo} index={index} />
+        </motion.li>
       ))}
-    </ul>
+    </motion.ul>
   );
 };
 
