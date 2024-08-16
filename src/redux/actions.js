@@ -10,9 +10,9 @@ import {
     UPDATE_SEARCH_TERM,
   } from './actionTypes';
   
-  export const addTodo = (text) => ({
+  export const addTodo = (title, description) => ({
     type: ADD_TODO,
-    payload: { text },
+    payload: { title, description },
   });
   
   export const toggleTodo = (id) => ({
@@ -25,12 +25,11 @@ import {
     payload: { id },
   });
   
-  
-  export const updateTodo = (id) => ({
+  export const updateTodo = (id, title, description) => ({
     type: UPDATE_TODO,
-    payload: { id },
+    payload: { id, title, description },
   });
-
+  
   export const markCompleted = (id) => ({
     type: MARK_COMPLETED,
     payload: { id },
