@@ -25,7 +25,7 @@ const TodoItem = ({ todo, index }) => {
   };
 
   return (
-    <motion.li
+    <motion.div
       className={`flex flex-col p-4 mb-4 rounded-lg shadow-lg ${
         todo.completed ? 'bg-gray-200 text-gray-600 opacity-70' : 'bg-white text-gray-900'
       }`}
@@ -137,7 +137,7 @@ const TodoItem = ({ todo, index }) => {
           )}
         </div>
       </div>
-    </motion.li>
+    </motion.div>
   );
 };
 
